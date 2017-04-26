@@ -1,0 +1,39 @@
+{
+  "name": "boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A boilerplate for frontend projects",
+  "scripts": {
+    "pretest": "./node_modules/typescript/bin/tsc test/**/*Test.{ts,tsx} --module commonjs",
+    "test": "./node_modules/mocha/bin/mocha",
+    "start": "./node_modules/gulp/bin/gulp.js --watch",
+    "build": "./node_modules/gulp/bin/gulp.js build"
+  },
+  "keywords": [
+    "typescript",
+    "react"
+  ],
+  "author": "Richard Weber <riche.weber@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/history": "^4.5.0",
+    "@types/lodash": "^4.14.63",
+    "@types/mocha": "^2.2.41",
+    "@types/react": "^15.0.23",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-router": "^4.0.4",
+    "lodash": "^4.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "webpack": "^2.4.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-typescript": "^3.1.6",
+    "mocha": "^3.3.0",
+    "rimraf": "^2.6.1",
+    "typescript": "^2.2.2",
+    "webpack-stream": "^3.2.0"
+  }
+}
