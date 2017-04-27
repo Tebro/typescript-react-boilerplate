@@ -4,8 +4,7 @@
   "private": true,
   "description": "A boilerplate for frontend projects",
   "scripts": {
-    "pretest": "./node_modules/typescript/bin/tsc test/**/*Test.{ts,tsx} --module commonjs",
-    "test": "./node_modules/mocha/bin/mocha",
+    "test": "./node_modules/mocha/bin/mocha --require ts-node/register test/**/*.ts",
     "start": "./node_modules/gulp/bin/gulp.js --watch",
     "build": "./node_modules/gulp/bin/gulp.js build"
   },
@@ -19,6 +18,7 @@
     "@types/history": "^4.5.0",
     "@types/lodash": "^4.14.63",
     "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.14",
     "@types/react": "^15.0.23",
     "@types/react-dom": "^15.5.0",
     "@types/react-router": "^4.0.4",
@@ -26,9 +26,11 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-router": "^4.1.1",
+    "ts-node": "^3.0.2",
     "webpack": "^2.4.1"
   },
   "devDependencies": {
+    "@types/assert": "0.0.31",
     "gulp": "^3.9.1",
     "gulp-typescript": "^3.1.6",
     "mocha": "^3.3.0",
