@@ -5,6 +5,7 @@ var webpack = require("webpack-stream");
 var rimraf = require("rimraf");
 var less = require("gulp-less");
 var concat = require("gulp-concat");
+var sourcemaps = require("gulp-sourcemaps");
 
 gulp.task("clean-dist", (cb) => {
     rimraf('./dist', cb);
@@ -23,8 +24,10 @@ gulp.task("copy-html", () => (
 
 gulp.task("less", () => (
     gulp.src("src/**/*.less")
+    .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(concat("style.css"))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest("build/"))
 ));
 
@@ -33,10 +36,12 @@ gulp.task("copy-css", ["less"], () => (
     .pipe(gulp.dest("./dist/"))
 ));
 
-gulp.task("typescript", ["copy-css"], () => (
+gulp.task("typescript", () => (
     tsProject.src()
+    .pipe(sourcemaps.init())
     .pipe(tsProject())
-    .js.pipe(gulp.dest("build"))
+    .js.pipe(sourcemaps.write())
+    .pipe(gulp.dest("build"))
 ));
 
 gulp.task("default", ['typescript', 'copy-html', 'copy-css'], () => (
@@ -49,13 +54,3 @@ gulp.task("default", ['typescript', 'copy-html', 'copy-css'], () => (
     .pipe(gulp.dest('dist'))
 ));
 
-gulp.task("build-dev", ['typescript', "copy-html", "copy-css"], () => (
-    gulp.src("build/src/index.js")
-    .pipe(webpack({
-        devtool: 'source-map',
-        output: {
-            filename: 'script.js',
-        }
-    }))
-    .pipe(gulp.dest('dist'))
-));
